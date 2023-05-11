@@ -69,7 +69,8 @@ const initEditor = () => {
       theme: 'gray',
       events: {
         'charCounter.update': function () {
-          const html = editorRef.value.html.get(true);
+          let html = editorRef.value.html.get(true);
+          // html.
           emits('update:richContent', html);
         },
         focus: function () {
@@ -81,6 +82,7 @@ const initEditor = () => {
       },
     },
     function () {
+      editorRef.value.html.set('');
       editorRef.value.html.set(props.richContent);
     },
   );
@@ -119,19 +121,25 @@ onMounted(() => {
   }
 }
 </style>
-<!-- <style>
-.fr-wrapper > div[style*='z-index: 9999'] {
-  position: absolute;
+<style>
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.fr-wrapper div:nth-child(1) {
+  position: relative;
   top: -10000px;
   opacity: 0;
 }
 
 .fr-element.fr-view {
   position: absolute;
-  top: 0;
+  width: 100%;
+  top: 0px;
 }
 
 .fr-placeholder {
   margin-top: 0 !important;
 }
-</style> -->
+</style>
